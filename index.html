@@ -1,17 +1,18 @@
-html
-  head
-    script src=httpsaframe.ioreleases1.6.0aframe.min.jsscript
-  head
-  body
-    a-scene
-      a-assets
-        img id=ciel src=assetCiel.png
-        a-asset-item id=sable src=assetSable.glba-asset-item
-      a-assets
-      a-sky src=#sable position=-50 -50 -50 material=opacity 0.8a-sky
-      a-entity gltf-model=#sable2 position=-366.230 -8.000 42.705a-entity
-      a-sphere position=24.723 3.833 581.876 radius=10 scale=5 5 5 color=#FEE893a-sphere
-      a-sphere position=101.000 111.709 533.432 radius=10 scale=3 3 3 color=#FB8C78a-sphere
-    a-scene
-  body
-html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="ciel" src="assetCiel.png">
+        <a-asset-item id="sable" src="assetSable.glb"></a-asset-item>
+      </a-assets>
+      <a-sky src="#sable" position="-50 -50 -50" material="opacity: 0.8"></a-sky>
+      <a-entity gltf-model="#sable2" position="-366.230 -8.000 42.705"></a-entity>
+      <a-sphere position="24.723 3.833 581.876" radius="10" scale="5 5 5" color="#FEE893"></a-sphere>
+      <a-sphere position="101.000 111.709 533.432" radius="10" scale="3 3 3" color="#FB8C78"></a-sphere>
+    </a-scene>
+  </body>
+</html>
