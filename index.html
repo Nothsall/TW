@@ -54,14 +54,22 @@
         rotation="0 -180 0"
       ></a-entity>
 
-      <!-- Modèle animé k2so avec mouvement -->
       <a-entity
-        id="k2so"
-        gltf-model="#k2so"
-        position="16.607 0 17.250"
-        rotation="0 -180 0"
-        animation-mixer
-      ></a-entity>
+      id="k2so"
+      gltf-model="#k2so"
+      position="5.472 0 7.606"
+      rotation="0 90 0"
+      animation-mixer
+      animation__move="property: position; to: 18.607 0 7.606; dur: 5000; easing: linear; startEvents: startMove"
+      animation__turn1="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: moveComplete"
+      animation__return="property: position; to: 5.472 0 7.606; dur: 5000; easing: linear; startEvents: turn1Complete"
+      animation__turn2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: returnComplete"
+      event-set__1="_event: animationcomplete__move; _target: #k2so; _event: moveComplete"
+      event-set__2="_event: animationcomplete__turn1; _target: #k2so; _event: turn1Complete"
+      event-set__3="_event: animationcomplete__return; _target: #k2so; _event: returnComplete"
+      event-set__4="_event: animationcomplete__turn2; _target: #k2so; _event: startMove"
+      startMove
+></a-entity>
 
       <a-entity
         gltf-model="#ATST"
@@ -93,49 +101,6 @@
     </a-scene>
 
     <script>
-      AFRAME.registerComponent('move-k2so', {
-        schema: {
-          points: { type: 'array', default: [[16.607, 0, 17.250], [20, 0, 20], [25, 0, 25]] },
-          duration: { type: 'number', default: 3000 },
-          stopDuration: { type: 'number', default: 2000 },
-        },
-        init: function () {
-          this.currentPoint = 0; // Index du point de départ
-          this.isMoving = false;
-          this.moveToNextPoint();
-        },
-        moveToNextPoint: function () {
-          if (this.isMoving) return; // Évite d'exécuter plusieurs fois en parallèle
-          this.isMoving = true;
-
-          const el = this.el;
-          const points = this.data.points;
-          const current = points[this.currentPoint];
-          const next = points[(this.currentPoint + 1) % points.length];
-
-          const duration = this.data.duration;
-          const stopDuration = this.data.stopDuration;
-
-          el.setAttribute('animation__move', {
-            property: 'position',
-            to: `${next[0]} ${next[1]} ${next[2]}`,
-            dur: duration,
-            easing: 'linear',
-          });
-
-          // Attend que le mouvement soit terminé
-          setTimeout(() => {
-            this.isMoving = false;
-            this.currentPoint = (this.currentPoint + 1) % points.length;
-
-            // Arrêt entre les mouvements
-            setTimeout(() => {
-              this.moveToNextPoint();
-            }, stopDuration);
-          }, duration);
-        },
-      });
-
       AFRAME.registerComponent('animate-k2so', {
         init: function () {
           this.el.addEventListener('model-loaded', () => {
@@ -151,33 +116,19 @@
           walkAction.setLoop(THREE.LoopOnce);
           idleAction.setLoop(THREE.LoopOnce);
 
-          const walkDuration = 2000; // Durée de la marche en millisecondes
-          const idleDuration = 2000; // Durée de l'arrêt en millisecondes
+          walkAction.play();
+          el.emit('walk');
 
-          const walkAndIdle = () => {
-            walkAction.reset().play();
-            el.emit('walk');
-
+          setTimeout(() => {
+            walkAction.stop();
+            idleAction.play();
+            el.emit('idle');
             setTimeout(() => {
-              walkAction.stop();
-              idleAction.reset().play();
-              el.emit('idle');
-
-              setTimeout(() => {
-                idleAction.stop();
-                walkAndIdle();
-              }, idleDuration);
-            }, walkDuration);
-          };
-
-          walkAndIdle();
+              idleAction.stop();
+              this.startWalking();
+            }, 2000); // Temps d'arrêt avant de recommencer à marcher
+          }, 5000); // Durée de la marche
         }
-      });
-
-      document.querySelector('#k2so').setAttribute('move-k2so', {
-        points: [[16.607, 0, 17.250], [20, 0, 20], [25, 0, 25]],
-        duration: 3000,
-        stopDuration: 2000,
       });
 
       document.querySelector('#k2so').setAttribute('animate-k2so', '');
