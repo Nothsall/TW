@@ -16,7 +16,7 @@
         <a-asset-item id="r2d2" src="asset/droide1.glb"></a-asset-item>
         <a-asset-item id="ATST" src="asset/ATST.glb"></a-asset-item>
         <a-asset-item id="destroyer" src="asset/destroyer.glb"></a-asset-item>
-        <a-asset-item id="k2so" src="asset/droide2.glb"></a-asset-item>
+        <a-asset-item id="milenium" src="asset/mileniumfalcon.glb"></a-asset-item>
       </a-assets>
       <a-sky
         src="#ciel"
@@ -26,19 +26,19 @@
       <a-entity gltf-model="#sable" position="0 0 0" scale="1 1 1"></a-entity>
       <a-entity
         gltf-model="#maison"
-        position="3.394 0 -0.970"
+        position="9.881 0 2.661"
         rotation="0 0 0"
       ></a-entity>
 
       <a-entity
         gltf-model="#maison"
-        position="10 0 -0.970"
+        position="17.560 0 2.661"
         rotation="0 0 0"
       ></a-entity>
 
       <a-entity
         gltf-model="#maison"
-        position="16.606 0 -0.970"
+        position="25.350 0 2.661"
         rotation="0 0 0"
       ></a-entity>
 
@@ -55,25 +55,24 @@
       ></a-entity>
 
       <a-entity
-      id="k2so"
-      gltf-model="#k2so"
-      position="5.472 0 7.606"
-      rotation="0 90 0"
-      animation-mixer
-      animation__move="property: position; to: 18.607 0 7.606; dur: 5000; easing: linear; startEvents: startMove"
-      animation__turn1="property: rotation; to: 0 -90 0; dur: 1000; easing: linear; startEvents: moveComplete"
-      animation__return="property: position; to: 5.472 0 7.606; dur: 5000; easing: linear; startEvents: turn1Complete"
-      animation__turn2="property: rotation; to: 0 90 0; dur: 1000; easing: linear; startEvents: returnComplete"
-      event-set__1="_event: animationcomplete__move; _target: #k2so; _event: moveComplete"
-      event-set__2="_event: animationcomplete__turn1; _target: #k2so; _event: turn1Complete"
-      event-set__3="_event: animationcomplete__return; _target: #k2so; _event: returnComplete"
-      event-set__4="_event: animationcomplete__turn2; _target: #k2so; _event: startMove"
-      startMove
-></a-entity>
+        id="milenium"
+        gltf-model="#milenium"
+        position="126.614 16.413 7.606"
+        scale=" 0.025 0.025 0.025"
+        rotation="0 -90 0"
+        animation="property: position; to: -136 16.413 7.606; dur: 10000; easing: linear; loop: true"
+      ></a-entity>
 
       <a-entity
         gltf-model="#ATST"
-        position="3.164 0 10.590"
+        position="5.472 0 12"
+        rotation="0 0 0"
+        scale="0.025 0.025 0.025"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#ATST"
+        position="5.472 0 12"
         rotation="0 0 0"
         scale="0.025 0.025 0.025"
       ></a-entity>
