@@ -19,6 +19,9 @@
         <a-asset-item id="milenium" src="asset/mileniumfalcon.glb"></a-asset-item>
         <a-asset-item id="tie" src="asset/tie_chasseur.glb"></a-asset-item>
         <a-asset-item id="cantina" src="asset/mos_eisley_cantina_star_wars (1).glb"></a-asset-item>
+        <a-asset-item id="eglise" src="asset/eglise.glb"></a-asset-item>
+        <a-asset-item id="petitbat" src="asset/petitbat.glb"></a-asset-item>
+        <a-asset-item id="eau" src="asset/eau.glb"></a-asset-item>
       </a-assets>
       <a-sky
         src="#ciel"
@@ -41,7 +44,7 @@
       <a-entity
         gltf-model="#maison"
         position="4.716 0 22.468"
-        rotation="0 0 0"
+        rotation="0 180 0"
       ></a-entity>
 
       <a-entity
@@ -51,10 +54,31 @@
       ></a-entity>
 
       <a-entity
+        gltf-model="#eglise"
+        position="36.486 -0.048 25.171"
+        rotation="0 -180.000 0"
+        scale="0.8 0.8 0.8"
+      ></a-entity>
+
+      <a-entity
         gltf-model="#cantina"
         position="31.938 -0.026 -13.197"
         rotation="0 -90 0"
         scale="1 1 1"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#petitbat"
+        position="14.451 0 3.231"
+        rotation="0 0 0"
+        scale="0.8 0.8 0.8"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#eau"
+        position="9.567 0 3.231"
+        rotation="0 0 0"
+        scale="0.5 0.5 0.5"
       ></a-entity>
 
       <a-entity
@@ -127,7 +151,7 @@
         scale="5 5 5"
         color="#FB8C78"
       ></a-sphere>
-      <a-camera position="0 1 0"></a-camera>
+      <a-camera position="0 0.75 0"></a-camera>
     </a-scene>
   </body>
 </html>
