@@ -17,6 +17,7 @@
         <a-asset-item id="ATST" src="asset/ATST.glb"></a-asset-item>
         <a-asset-item id="destroyer" src="asset/destroyer.glb"></a-asset-item>
         <a-asset-item id="milenium" src="asset/mileniumfalcon.glb"></a-asset-item>
+        <a-asset-item id="tie" src="asset/tie_fighter.glb"></a-asset-item>
       </a-assets>
       <a-sky
         src="#ciel"
@@ -55,32 +56,40 @@
       ></a-entity>
 
       <a-entity
+        gltf-model="#tie"
+        position="150 30 7.606"
+        rotation="0 -90 0"
+        scale=" 0.025 0.025 0.025"
+        animation="property: position; to: -300 30 7.606; dur: 6000; easing: linear; loop: true"
+      ></a-entity>
+
+      <a-entity
       id="milenium"
       gltf-model="#milenium"
-      position="126.614 16.413 7.606"
+      position="225 26.413 7.606"
       scale=" 0.025 0.025 0.025"
       rotation="0 -90 0"
-      animation="property: position; to: -136 16.413 7.606; dur: 8000; easing: linear; loop: true">
+      animation="property: position; to: -225 26.413 7.606; dur: 6000; easing: linear; loop: true">
       
       
       <a-cylinder
-      position="0 16.413 0"
+      position="-40 26.413 0"
       radius="10"
       rotation="90 0 0"
-      scale="1 1 1"
+      scale="0.5 0.5 0.5"
       height="200"
       color="#ff0000"
-      animation="property: position; to: 0 16.413 8000; dur: 1000; easing: linear; loop: true">
+      animation="property: position; to: 4 26.413 8000; dur: 1000; easing: linear; loop: true">
       ></a-cylinder>
       
       <a-cylinder
-      position="0 16.413 0"
+      position="40 26.413 200"
       radius="10"
       rotation="90 0 0"
-      scale="1 1 1"
+      scale="0.5 0.5 0.5"
       height="200"
       color="#ff0000"
-      animation="property: position; to: 0 16.413 8000; dur: 1000; easing: linear; loop: true"></a-cylinder>
+      animation="property: position; to: 10 26.413 8000; dur: 1000; easing: linear; loop: true"></a-cylinder>
       </a-entity>
 
 
