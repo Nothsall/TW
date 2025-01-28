@@ -55,20 +55,34 @@
       ></a-entity>
 
       <a-entity
-        id="milenium"
-        gltf-model="#milenium"
-        position="126.614 16.413 7.606"
-        scale=" 0.025 0.025 0.025"
-        rotation="0 -90 0"
-        animation="property: position; to: -136 16.413 7.606; dur: 10000; easing: linear; loop: true"
-      ></a-entity>
+      id="milenium"
+      gltf-model="#milenium"
+      position="126.614 16.413 7.606"
+      scale=" 0.025 0.025 0.025"
+      rotation="0 -90 0"
+      animation="property: position; to: -136 16.413 7.606; dur: 8000; easing: linear; loop: true">
+      
+      
+      <a-cylinder
+      position="0 16.413 0"
+      radius="10"
+      rotation="90 0 0"
+      scale="1 1 1"
+      height="200"
+      color="#ff0000"
+      animation="property: position; to: 0 16.413 8000; dur: 1000; easing: linear; loop: true">
+      ></a-cylinder>
+      
+      <a-cylinder
+      position="0 16.413 0"
+      radius="10"
+      rotation="90 0 0"
+      scale="1 1 1"
+      height="200"
+      color="#ff0000"
+      animation="property: position; to: 0 16.413 8000; dur: 1000; easing: linear; loop: true"></a-cylinder>
+      </a-entity>
 
-      <a-entity
-        gltf-model="#ATST"
-        position="5.472 0 12"
-        rotation="0 0 0"
-        scale="0.025 0.025 0.025"
-      ></a-entity>
 
       <a-entity
         gltf-model="#ATST"
@@ -98,39 +112,5 @@
       ></a-sphere>
       <a-camera position="0 1 0"></a-camera>
     </a-scene>
-
-    <script>
-      AFRAME.registerComponent('animate-k2so', {
-        init: function () {
-          this.el.addEventListener('model-loaded', () => {
-            this.startWalking();
-          });
-        },
-        startWalking: function () {
-          const el = this.el;
-          const mixer = el.getObject3D('mesh').mixer;
-          const walkAction = mixer.clipAction('Walk');
-          const idleAction = mixer.clipAction('Idle');
-
-          walkAction.setLoop(THREE.LoopOnce);
-          idleAction.setLoop(THREE.LoopOnce);
-
-          walkAction.play();
-          el.emit('walk');
-
-          setTimeout(() => {
-            walkAction.stop();
-            idleAction.play();
-            el.emit('idle');
-            setTimeout(() => {
-              idleAction.stop();
-              this.startWalking();
-            }, 2000); // Temps d'arrêt avant de recommencer à marcher
-          }, 5000); // Durée de la marche
-        }
-      });
-
-      document.querySelector('#k2so').setAttribute('animate-k2so', '');
-    </script>
   </body>
 </html>
