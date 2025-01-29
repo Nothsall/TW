@@ -29,7 +29,7 @@
     </script>
   </head>
   <body>
-    <a-scene>
+    <a-scene xr-mode-ui="enabled: true" renderer="colorManagement: true;">
       <a-assets>
         <img id="ciel" src="asset/Ciel.png" />
         <a-asset-item id="sable" src="asset/Sable.glb"></a-asset-item>
@@ -224,8 +224,6 @@
       <a-entity vive-controls="hand: right"></a-entity>
       <a-entity oculus-touch-controls="hand: left"></a-entity>
       <a-entity oculus-touch-controls="hand: right"></a-entity>
-      <a-entity windows-motion-controls="hand: left"></a-entity>
-      <a-entity windows-motion-controls="hand: right"></a-entity>
       <a-entity thumbstick-controls></a-entity>
     
     </a-entity>
