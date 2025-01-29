@@ -22,12 +22,16 @@
         <a-asset-item id="eglise" src="asset/eglise.glb"></a-asset-item>
         <a-asset-item id="petitbat" src="asset/petitbat.glb"></a-asset-item>
         <a-asset-item id="eau" src="asset/eau.glb"></a-asset-item>
+        <a-asset id="cantina_music" src="asset/CantinaBand.mp3"></a-asset>
+        <a-asset id="tatooine_band" src="asset/TatooineBand.mp3"></a-asset>
       </a-assets>
       <a-sky
         src="#ciel"
         position="-50 -50 -50"
         material="opacity: 0.85"
       ></a-sky>
+      <a-sound src="#tatooine_band" src="./asset/TatooineBand.mp3" controls></a-sound>
+      <a-sound src="#tatooine_band" autoplay="true" loop="true"></a-sound>
       <a-entity gltf-model="#sable" position="0 0 0" scale="1 1 1"></a-entity>
       <a-entity
         gltf-model="#maison"
@@ -127,7 +131,7 @@
 
       <a-entity
         gltf-model="#ATST"
-        position="5.472 0 12"
+        position="1.080 0 12"
         rotation="0 0 0"
         scale="0.025 0.025 0.025"
       ></a-entity>
