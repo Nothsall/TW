@@ -179,30 +179,54 @@
         scale="5 5 5"
         color="#FB8C78"
       ></a-sphere>
-      <a-entity camera wasd-controls="acceleration: 10" look-controls="pointerLockEnabled: true" position="0 1 0">
-        <a-entity
-          cursor="fuse: true; fuseTimeout: 500"
-          position="0 0 -1"
-          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-          material="color: black; shader: flat"
-        ></a-entity>
-        <a-entity
-          id="instructions"
-          position="0 -0.5 -1.5"
-          text="value: Trouve les 3 objets iconiques pour vaincre l'empire; color: white; width: 1.5; font: https://cdn.aframe.io/fonts/mozillavr.fnt"
-        ></a-entity>
-        <a-entity
-          id="timer"
-          position="0 0.5 -1.5"
-          text="value: Temps restant: 3:00; color: red; width: 2; align: center"
-        ></a-entity>
-        <a-entity
-          id="game-over"
-          position="0 0 -1.5"
-          text="value: Game Over; color: red; width: 4; align: center"
-          visible="false"
-        ></a-entity>
-      </a-entity>
+      <a-entity 
+      camera 
+      wasd-controls="acceleration: 10"
+      look-controls="pointerLockEnabled: true"
+      movement-controls
+      position="0 1.6 0"
+    >
+      <a-entity 
+        cursor="fuse: true; fuseTimeout: 500"
+        position="0 0 -1"
+        geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+        material="color: black; shader: flat"
+      ></a-entity>
+      
+      <!-- Instructions -->
+      <a-entity
+        id="instructions"
+        position="0 -0.5 -1.5"
+        text="value: Trouve les 3 objets iconiques pour vaincre l'empire; color: white; width: 1.5; font: https://cdn.aframe.io/fonts/mozillavr.fnt"
+      ></a-entity>
+    
+      <!-- Timer -->
+      <a-entity
+        id="timer"
+        position="0 0.5 -1.5"
+        text="value: Temps restant: 3:00; color: red; width: 2; align: center"
+      ></a-entity>
+    
+      <!-- Game Over -->
+      <a-entity
+        id="game-over"
+        position="0 0 -1.5"
+        text="value: Game Over; color: red; width: 4; align: center"
+        visible="false"
+      ></a-entity>
+    
+      <!-- Contrôleurs VR -->
+      <a-entity laser-controls="hand: right"></a-entity>
+      <a-entity laser-controls="hand: left"></a-entity>
+    
+      <!-- Manettes VR compatibles -->
+      <a-entity vive-controls="hand: left"></a-entity>
+      <a-entity vive-controls="hand: right"></a-entity>
+      <a-entity oculus-touch-controls="hand: left"></a-entity>
+      <a-entity oculus-touch-controls="hand: right"></a-entity>
+      <a-entity thumbstick-controls></a-entity>
+    
+    </a-entity>
     </a-scene>
   </body>
 </html>
