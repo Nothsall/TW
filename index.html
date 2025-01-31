@@ -16,7 +16,7 @@
         <a-asset-item id="mairie" src="./asset/mairie.glb"></a-asset-item>
         <a-asset-item id="maison" src="./asset/dome.glb"></a-asset-item>
         <a-asset-item id="sable" src="./asset/sable.glb"></a-asset-item>
-        <a-asset-item id="ATST" src="./asset/ATST.glb"></a-asset-item>
+        <a-asset-item id="ATST" src="./asset/star_wars_at-st_rigged.glb"></a-asset-item>
         <a-asset-item id="destroyer" src="./asset/destroyer.glb"></a-asset-item>
         <a-asset-item id="milenium" src="./asset/mileniumfalcon.glb"></a-asset-item>
         <a-asset-item id="tie" src="./asset/tie_chasseur.glb"></a-asset-item>
@@ -26,6 +26,9 @@
         <a-asset-item id="eau" src="./asset/eau.glb"></a-asset-item>
         <a-asset id="cantina_band" src="./asset/CantinaBand.mp3"></a-asset>
         <a-asset id="tatooine_band" src="./asset/TatooineBand.mp3"></a-asset>
+        <a-asset id="chameau" src="./asset/eopie_star_wars.glb"></a-asset>
+        <a-asset id="banta" src="./asset/star_wars_bantha_walk.glb"></a-asset>
+        <a-asset id="trooper" src="./asset/storm_trooper.glb"></a-asset>
       </a-assets>
       <a-sky
         src="#ciel"
@@ -89,10 +92,35 @@
       ></a-entity>
 
       <a-entity
-        gltf-model="#r2d2"
-        position="16.607 0 17.250"
-        rotation="0 -180 0"
-      ></a-entity>
+  gltf-model="#chameau"
+  position="13.929 0 16.738"
+  rotation="0 -90 0"
+  scale="0.65 0.65 0.65"
+  animation-mixer
+></a-entity>
+
+<a-entity
+  gltf-model="#banta"
+  position="41.546 0 8.677"
+  rotation="0 -125.110 0"
+  scale="1.5 1.5 1.5"
+  animation-mixer
+  animation="property: position; to: -5 0 8.677; dur: 30000; easing: linear; loop: true"
+></a-entity>
+
+<a-entity
+  gltf-model="#trooper"
+  position="20.413 0.543 15.689"
+  rotation="0 -125.110 0"
+  scale="0.7 0.7 0.7"
+></a-entity>
+
+<a-entity
+  gltf-model="#trooper"
+  position="7.601 0.543 6.309"
+  rotation="0 -62.150 0"
+  scale="0.7 0.7 0.7"
+></a-entity>
 
       <a-entity
         gltf-model="#tie"
@@ -134,9 +162,11 @@
 
       <a-entity
         gltf-model="#ATST"
-        position="1.080 0 12"
-        rotation="0 0 0"
-        scale="0.025 0.025 0.025"
+        position="1.080 4.027 12"
+        rotation="0 90 0"
+        scale="1 1 1"
+        animation-mixer
+        animation="property: position; to: 45 4.027 12; dur: 30000; easing: linear; loop: true"
       ></a-entity>
 
       <a-entity
@@ -166,7 +196,7 @@
       camera 
       wasd-controls="acceleration: 10"
       look-controls="pointerLockEnabled: true"
-      movement-controls
+      universal-controls="movementControls: gamepad, keyboard, touch; movementSpeed: 10"
       position="0 1 0">
     </a-entity>
     </a-scene>
@@ -178,7 +208,7 @@
           const cantinaMusic = document.querySelector("#cantina-music");
           const tatooineMusic = document.querySelector("#tatooine-music");
           const cantinaPosition = new THREE.Vector3(31.938, -0.026, -13.197);
-          const threshold = 10; // Distance de déclenchement
+          const threshold = 10;
 
           this.el.sceneEl.addEventListener("loaded", () => {
             this.interval = setInterval(() => {
@@ -196,7 +226,7 @@
                   tatooineMusic.components.sound.play();
                 }
               }
-            }, 500); // Vérification toutes les 500ms
+            }, 500);
           });
         },
         remove: function () {
