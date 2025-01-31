@@ -24,7 +24,7 @@
         <a-asset-item id="eglise" src="./asset/eglise.glb"></a-asset-item>
         <a-asset-item id="petitbat" src="./asset/petitbat.glb"></a-asset-item>
         <a-asset-item id="eau" src="./asset/eau.glb"></a-asset-item>
-        <a-asset id="cantina_music" src="./asset/CantinaBand.mp3"></a-asset>
+        <a-asset id="cantina_band" src="./asset/CantinaBand.mp3"></a-asset>
         <a-asset id="tatooine_band" src="./asset/TatooineBand.mp3"></a-asset>
       </a-assets>
       <a-sky
@@ -32,8 +32,8 @@
         position="-50 -50 -50"
         material="opacity: 0.85"
       ></a-sky>
-      <a-sound src="#tatooine_band" src="./asset/TatooineBand.mp3" controls></a-sound>
       <a-sound src="#tatooine_band" autoplay="true" loop="true"></a-sound>
+      
       <a-entity gltf-model="#sable" position="0 0 0" scale="1 1 1"></a-entity>
 
       <a-entity
@@ -86,6 +86,12 @@
         position="9.567 0 3.231"
         rotation="0 0 0"
         scale="0.5 0.5 0.5"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#r2d2"
+        position="16.607 0 17.250"
+        rotation="0 -180 0"
       ></a-entity>
 
       <a-entity
@@ -152,6 +158,10 @@
         scale="5 5 5"
         color="#FB8C78"
       ></a-sphere>
+      
+      <a-entity id="cantina-music" sound="src: #cantina_band; autoplay: false; loop: true; positional: true"></a-entity>
+      <a-entity id="tatooine-music" sound="src: #tatooine_band; autoplay: true; loop: true; positional: false"></a-entity>
+
       <a-entity 
       camera 
       wasd-controls="acceleration: 10"
@@ -160,5 +170,41 @@
       position="0 1 0">
     </a-entity>
     </a-scene>
+
+    <script>
+      AFRAME.registerComponent("music-controller", {
+        init: function () {
+          const camera = document.querySelector("[camera]");
+          const cantinaMusic = document.querySelector("#cantina-music");
+          const tatooineMusic = document.querySelector("#tatooine-music");
+          const cantinaPosition = new THREE.Vector3(31.938, -0.026, -13.197);
+          const threshold = 10; // Distance de déclenchement
+
+          this.el.sceneEl.addEventListener("loaded", () => {
+            this.interval = setInterval(() => {
+              let cameraPos = camera.object3D.position;
+              let distance = cameraPos.distanceTo(cantinaPosition);
+
+              if (distance < threshold) {
+                if (cantinaMusic.components.sound && !cantinaMusic.components.sound.isPlaying) {
+                  tatooineMusic.components.sound.pause();
+                  cantinaMusic.components.sound.play();
+                }
+              } else {
+                if (tatooineMusic.components.sound && !tatooineMusic.components.sound.isPlaying) {
+                  cantinaMusic.components.sound.pause();
+                  tatooineMusic.components.sound.play();
+                }
+              }
+            }, 500); // Vérification toutes les 500ms
+          });
+        },
+        remove: function () {
+          clearInterval(this.interval);
+        },
+      });
+
+      document.querySelector("a-scene").setAttribute("music-controller", "");
+    </script>
   </body>
 </html>
